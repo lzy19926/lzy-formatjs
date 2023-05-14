@@ -1,4 +1,5 @@
 import type { IntlConfig, Formatters } from './types';
+/**创建一个Intl实例*/
 export declare function createIntl(config: IntlConfig): {
     formatDate(value: string | number | Date | undefined, opts?: Intl.DateTimeFormatOptions | undefined): string;
     formatTime(value: string | number | Date | undefined, opts?: Intl.DateTimeFormatOptions | undefined): string;

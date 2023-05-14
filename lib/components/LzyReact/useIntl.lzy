@@ -1,0 +1,44 @@
+import LzyReact from 'lzy-react'
+import Ruzy from 'lzy-ruzy'
+import { createIntl } from "../../../out/core/Intl"
+
+
+// 创建Intl上下文
+export function createIntlContext(config) {
+    if (typeof window !== 'undefined') {
+        if (!window.__LZY_REACT_INTL_CONTEXT__) {
+
+            const _intl = createIntl(config)
+            const _store = new Ruzy({ intl: _intl })
+
+            window.__LZY_REACT_INTL_CONTEXT__ = {
+                intl: _intl,
+                store: _store
+            }
+        }
+        return window.__LZY_REACT_INTL_CONTEXT__
+    }
+}
+
+/**切换Intl国际化配置的方法*/
+export const changeIntl = (config) => {
+    if (!config) return
+    console.log(config);
+    const _intl = createIntl(config)
+    const store = window.__LZY_REACT_INTL_CONTEXT__.store
+    store.setState({ intl: _intl })
+}
+
+/**获取全局上下文中的intl实例,并给组件订阅上下文实例*/
+export function useIntl() {
+    if (!window.__LZY_REACT_INTL_CONTEXT__) {
+        const defaultConfig = config_zh
+        createIntlContext(defaultConfig)
+    }
+
+    //订阅Ruzy中保存的intl实例
+    const store = window.__LZY_REACT_INTL_CONTEXT__.store
+    const { intl } = store.useState("intl")
+
+    return { intl }
+}

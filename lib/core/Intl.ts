@@ -123,6 +123,7 @@ function createIntlFormatters(resolvedIntlconfig: IntlConfig, formatters: Format
 }
 
 //! ---------主要逻辑  创建一个Intl实例 内部保存了
+/**创建一个Intl实例*/
 export function createIntl(config: IntlConfig) {
     const resolvedIntlconfig = resolveIntlconfig(config)
     const formatters = createFormatters()

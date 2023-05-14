@@ -76,6 +76,7 @@ function createIntlFormatters(resolvedIntlconfig, formatters) {
     };
 }
 //! ---------主要逻辑  创建一个Intl实例 内部保存了
+/**创建一个Intl实例*/
 function createIntl(config) {
     const resolvedIntlconfig = resolveIntlconfig(config);
     const formatters = createFormatters();

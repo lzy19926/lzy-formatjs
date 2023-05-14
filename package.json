@@ -2,11 +2,15 @@
   "name": "lzy-formatjs",
   "version": "1.2.0",
   "description": "为Lzy-React打造的国际化工具组件,也可适配原生JS",
-  "main": "./out/index.js",
+  "main": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "lzy19926",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "lzy-react": "file:./lzy-React",
+    "lzy-ruzy": "file:./lzy-Ruzy"
+  }
 }

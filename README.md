@@ -2,12 +2,55 @@
 
 - 基本设计源于React-Intl
 - 通过React.context进行集成
-- 通过Ruzy与Lzy-React进行集成
+- 通过Ruzy状态管理器与Lzy-React进行集成
 
 
 ## TODO
 - 简化配置项
-- 集成Lzy-React(暂不支持component)
+
+## Lzy-React框架集成
+```js
+// 创建国际化配置文本
+const messages_zh = {
+     hellow: "你好,{name}",
+}
+const messages_en = {
+    hellow: "hellow,{name}!",
+}
+const config_zh = {
+    locale: 'zh',
+    messages: messages_zh,
+}
+const config_en = {
+    locale: 'en',
+    messages: messages_en,
+}
+```
+
+```js
+// 组件内使用
+import LzyReact, { render } from 'lzy-react'
+import { FormatMessage, FormatMessageProvider, changeIntl } from 'lzy-formatjs'
+
+// 提供切换语言配置方法
+const changeLanguage = () => { changeIntl(config_en) }
+
+// 使用FormatMessageProvider组件给下级组件提供国际化配置
+// 使用FormatMessage组件渲染对应的文本节点
+export function App() {
+    return (
+        <FormatMessageProvider config={config_zh}> 
+            <button onClick={changeLanguage}>切换语言</button>
+
+            <FormatMessage id="hellow" values={{ name: "张三" }} />
+            <FormatMessage id="fxxk" values={{ name: "张三" }} />
+        </FormatMessageProvider>
+    )
+}
+
+render(<App />, document.getElementById('root'))
+
+```
 
 ## 基类使用
 
